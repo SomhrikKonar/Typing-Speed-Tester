@@ -29,10 +29,9 @@ class InputFieldUtils {
     let wpm = state.wpm;
     let epm = state.epm;
 
-    if (char === " ") {
+    if (char === " " || !char) {
       inputRef.current.innerText = "";
       if (text.length === 1) {
-        console.log(text[0], text.length);
         return;
       }
       if (originalWordsLeftArr[0] === currentWord) {
