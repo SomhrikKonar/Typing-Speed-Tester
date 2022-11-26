@@ -30,11 +30,9 @@ class InputFieldUtils {
     let wpm = state.wpm;
     let epm = state.epm;
 
-    let submitKeys = new Set(["insertParagraph"]);
-
-    if (submitKeys.has(charType) || char === " ") {
+    if ((charType !== "deleteContentBackward" && !char) || char === " ") {
       inputRef.current.innerText = "";
-      if (text.length === 1) {
+      if ((text.length === 1 && char === " ") || (text.length === 0 && !char)) {
         return;
       }
       if (originalWordsLeftArr[0] === currentWord) {
