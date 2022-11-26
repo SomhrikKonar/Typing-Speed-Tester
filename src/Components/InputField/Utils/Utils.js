@@ -19,6 +19,7 @@ class InputFieldUtils {
 
   //to handle typing
   handleInput(e, words, setWords, inputRef, state, dispatch) {
+    let charType = e.nativeEvent.inputType;
     let char = e.nativeEvent.data;
     let text = e.currentTarget.textContent;
     let originalWordsLeftArr = [...words.originalWordsLeft];
@@ -29,7 +30,9 @@ class InputFieldUtils {
     let wpm = state.wpm;
     let epm = state.epm;
 
-    if (char === " " || !char) {
+    let submitKeys = new Set(["insertParagraph"]);
+
+    if (submitKeys.has(charType) || char === " ") {
       inputRef.current.innerText = "";
       if (text.length === 1) {
         return;
