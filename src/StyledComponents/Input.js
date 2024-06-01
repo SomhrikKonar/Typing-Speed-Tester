@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Input = styled.div`
+  display: ${(props) => props.display};
+  align-items: ${(props) => props.alignItems};
   height: ${(props) => props.height};
   min-width: ${(props) => props.minWidth};
   border: ${(props) => props.border || 0};

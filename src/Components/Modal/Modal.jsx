@@ -30,7 +30,6 @@ function Modal({ setStatus }) {
       <Div
         onClick={() => {
           setStatus("stopped");
-
           dispatch(setToDefault());
         }}
         position="absolute"

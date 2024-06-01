@@ -30,10 +30,9 @@ function InputField({ status, setStatus }) {
   }, []);
 
   useEffect(() => {
-    if (status === "completed") {
+    if (status === "completed" || status === "stopped") {
       const newSet = InputUtlis.handleRandomWord();
       inputRef.current.innerHTML = "";
-      console.log(inputRef);
       setWords({
         ...words,
         currentWord: "",
@@ -84,6 +83,8 @@ function InputField({ status, setStatus }) {
       {status === "stopped" && <StartAnimation />}
       <Input
         ref={inputRef}
+        display="flex"
+        alignItems="center"
         contentEditable={status !== "completed" ? "true" : "false"}
         fontSize="30px"
         minWidth="1px"

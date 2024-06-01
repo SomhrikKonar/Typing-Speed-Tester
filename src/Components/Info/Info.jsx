@@ -2,21 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Div } from "../../StyledComponents/Div";
 import Counter from "../Counters/Counter";
 import Timer from "../Timer/Timer";
-import { useStore } from "../../Store/Store";
-import { setToDefault } from "../../Store/Reducers/CounterReducer";
 
 function Info({ status, setStatus }) {
   const [timer, setTimer] = useState(60);
-  const [, dispatch] = useStore();
 
   useEffect(() => {
     if (status === "ongoing") setTimer(timer - 1);
+    else if(status === "stopped") setTimer(60)
   }, [status]);
 
   useEffect(() => {
+    let timeout = null
     if (status === "ongoing") {
       if (timer - 1 >= 0)
-        setTimeout(() => {
+        timeout = setTimeout(() => {
           setTimer(timer - 1);
         }, 1000);
       else {
@@ -24,7 +23,11 @@ function Info({ status, setStatus }) {
         setTimer(60);
       }
     }
+    return ()=>{
+      clearTimeout(timeout)
+    }
   }, [timer]);
+
 
   return (
     <Div display="flex" alignItems="center" margin="0 0 60px 0">
